@@ -1,0 +1,40 @@
+{% extends 'inc/base.html' %}
+
+{% block title %}
+    <title>sign up</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Registration</h1>
+
+    {% include 'inc/error.html' %}
+
+    <div class="signup">
+        <div class="mb-3">
+            <label for="login_input" class="form-label">Login</label>
+            <input type="text" class="form-control" id="login_input" maxlength="20" placeholder="Enter you login here">
+        </div>
+        <div class="mb-3">
+            <label for="email_input" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email_input" placeholder="Enter you email here">
+        </div>
+        <div class="mb-3">
+            <label for="nickname_input" class="form-label">NickName</label>
+            <input type="text" class="form-control" id="nickname_input" maxlength="20" placeholder="Enter you nickname here">
+        </div>
+        <div class="mb-3">
+            <label for="password_input" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password_input" maxlength="25" placeholder="password">
+        </div>
+        <div class="mb-3">
+            <label for="password_repeat_input" class="form-label">Repeat password</label>
+            <input type="password" class="form-control" id="password_repeat_input" maxlength="25" placeholder="password">
+        </div>
+        <div class="mb-3">
+            <label for="upload_avatar" class="form-label">Upload avatar</label>
+            <input class="form-control" type="file" id="upload_avatar">
+        </div>
+        <button type="button" class="btn btn-outline-dark">Register!</button>
+    </div>
+{% endblock %}
+

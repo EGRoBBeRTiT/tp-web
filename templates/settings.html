@@ -1,0 +1,34 @@
+{% extends 'inc/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>settings</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Settings: {{ user.nickname }}</h1>
+    <div class="settings">
+        <div class="mb-3">
+            <label for="login_input" class="form-label">Login</label>
+            <input type="text" class="form-control" id="login_input" maxlength="20" value="{{ user.username }}">
+        </div>
+        <div class="mb-3">
+            <label for="email_input" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email_input" value="{{ user.email }}">
+        </div>
+        <div class="mb-3">
+            <label for="nickname_input" class="form-label">NickName</label>
+            <input type="text" class="form-control" id="nickname_input" maxlength="20" value="{{ user.nickname }}">
+        </div>
+        <div class="mb-3">
+            <label for="upload_avatar" class="form-label">Upload avatar</label>
+            <div class="avatar">
+                <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt=""/>
+            </div>
+            <input class="form-control" type="file" id="upload_avatar">
+        </div>
+        <button type="button" class="btn btn-outline-dark">Save</button>
+    </div>
+{% endblock %}
+

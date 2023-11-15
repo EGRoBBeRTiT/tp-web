@@ -1,0 +1,34 @@
+{% load static %}
+
+<div class="row">
+    <div class="col-2">
+        <div class="avatar">
+            <img src="{{ MEDIA_URL }}{{ question.profile_id.avatar }}" alt="" />
+        </div>
+        <div class="like">
+            {% load items_length %}
+            {{ question.question_likes.all|items_length:False }}
+            <a class="link-like" href="#"><img class = "arrows" src="{% static 'img/down.jpg' %}"></a>
+            {{ question.question_likes.all|items_length:True }}
+            <a class="link-like" href="#"><img class = "arrows" src="{% static 'img/up.jpg' %}"></a>
+        </div>
+    </div>
+
+    <div class="col-10">
+        <h2 class="question-title"><a href="{% url 'question' question_id=question.id %}">{{ question.title }}</a></h2>
+        <div class="question-text">
+            {{ question.text }}
+        </div>
+        <div class="question-footer">
+            <div class="row">
+                <div class="col-3">
+                    <span class="answer"><a href="{% url 'question' question_id=question.id %}">answer ({{ question.amount_of_answers }})</a></span>
+                </div>
+                <div class="col-9">
+                    {% include 'inc/question_tags.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

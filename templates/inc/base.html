@@ -1,0 +1,103 @@
+<!doctype html>
+
+{% load static %}
+
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block title %}
+    {% endblock %}
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="d-flex flex-column h-100">
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">AskTitov</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <form class="d-flex" id="form-search" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <a href="{% url 'ask' %}">
+                    <button type="button" class="btn btn-success">Ask!</button>
+                </a>
+                <div class="user-block">
+                    {% if is_authorized %}
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="user-block-avatar">
+                                <img src="{{ MEDIA_URL }}1.jpg" alt=""/>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="user-block-information">
+                                User name
+                                <div class="user-block-actions">
+                                    <a href="#">log out</a>
+                                    <a href="{% url 'settings' %}">settings</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                        <div class="user-block-actions">
+                            <a href="{% url 'login' %}">log in</a>
+                            <a href="{% url 'signup' %}">register</a>
+                        </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="flex-shrink-0">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+
+            {% block content %}
+            {% endblock %}
+
+            </div>
+
+            <div class="col-4">
+                <div class="sidebar">
+                    <h2 class="sidebar-tags">Popular Tags</h2>
+                    <div class="tags">
+                        {% for tag in popular_tags %}
+                            <span class="tag"><a href="{% url 'tag' tag_name=tag %}">{{ tag }}</a></span>
+                        {% endfor %}
+                    </div>
+                    <h2 class="sidebar-members">Best Members</h2>
+                    {% for user in best_members %}
+                        <div class="member">
+                        <a href="#">{{ user.nickname }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <div class="footer_text">Contribute: Egor Titov</div>
+    </div>
+</footer>
+</body>
+</html>
+

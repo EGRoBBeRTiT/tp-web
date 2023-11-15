@@ -1,0 +1,31 @@
+{% extends 'inc/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>question</title>
+{% endblock %}
+
+{% block content %}
+    <div class="question_answers">
+        {% include 'inc/question_item.html' %}
+    </div>
+
+    <hr/>
+
+    {% for answer in answers %}
+        {% include 'inc/answer_item.html' %}
+    {% endfor %}
+
+    {% include 'inc/pagination.html' with page_obj=answers %}
+
+    <hr/>
+
+    <div class="mb-3">
+        <label for="answer_input" class="form-label">Add your answer</label>
+        <textarea class="form-control" id="answer_input" rows="3" placeholder="Enter your answer here" maxlength="512">
+        </textarea>
+    </div>
+    <button type="button" class="btn btn-secondary">Answer</button>
+{% endblock %}
+

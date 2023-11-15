@@ -1,0 +1,26 @@
+{% load static %}
+
+<div class="question">
+    <div class="row">
+        <div class="col-2">
+            <div class="avatar">
+                <img src="{{ MEDIA_URL }}{{ answer.profile_id.avatar }}" alt="" />
+            </div>
+            <div class="like">
+                <a class="link-like" href="#"><img class = "arrows" src="{% static 'img/down.jpg' %}"></a>
+                <div class="counter">{{ answer.likes.amount_of_likes }}</div>
+                <a class="link-like" href="#"><img class = "arrows" src="{% static 'img/up.jpg' %}"></a>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="question-text">{{ answer.text }}</div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="correct_answer1">
+                <label class="form-check-label" for="correct_answer1">
+                    Correct!
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+

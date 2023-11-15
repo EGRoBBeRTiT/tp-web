@@ -1,0 +1,26 @@
+{% extends 'inc/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>questions by tag</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="question-header">
+        <h1>Tag: {{ tag }}</h1>
+    </div>
+
+    {% for question in questions %}
+        <div class="question">
+        {% include 'inc/question_item.html' %}
+        </div>
+    {% empty %}
+        <h2>The list of questions by tag {{ tag }} is empty</h2>
+    {% endfor %}
+
+    {% include 'inc/pagination.html' with page_obj=questions %}
+
+{% endblock %}
+

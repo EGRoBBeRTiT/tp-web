@@ -1,0 +1,16 @@
+<span class="question-tags">Likes:
+    {% load items_length %}
+    <div>
+        {{ question.question_likes.all|items_length:True }}
+    </div>
+    <div>
+        {{ question.question_likes.all|items_length:False }}
+    </div>
+    {% for like in question.question_likes.all %}
+        <span>{{ like.is_like }}</span>
+    {% endfor %}
+    <a class="link-like" href="#"><img class = "arrows" src="{% static 'img/down.jpg' %}"></a>
+    <div class="counter">{{ question.likes.amount_of_likes }}</div>
+    <a class="link-like" href="#"><img class = "arrows" src="{% static 'img/up.jpg' %}"></a>
+</span>
+
