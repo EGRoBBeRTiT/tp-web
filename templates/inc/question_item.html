@@ -22,7 +22,7 @@
         <div class="question-footer">
             <div class="row">
                 <div class="col-3">
-                    <span class="answer"><a href="{% url 'question' question_id=question.id %}">answer ({{ question.amount_of_answers }})</a></span>
+                    <span class="answer"><a href="{% url 'question' question_id=question.id %}">answer ({{ question.answers.all|length }})</a></span>
                 </div>
                 <div class="col-9">
                     {% include 'inc/question_tags.html' %}

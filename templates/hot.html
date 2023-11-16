@@ -11,9 +11,8 @@
     <div class="question-header">
         <h1>Hot questions</h1>
     </div>
-    {% load sort_by_likes %}
 
-    {% for question in questions|sort_by_likes %}
+    {% for question in questions %}
         <div class="question">
             {% include 'inc/question_item.html' %}
         </div>

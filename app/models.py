@@ -51,6 +51,7 @@ class QuestionLike(models.Model):
 
     class Meta:
         ordering = ['-id']
+        unique_together = ('profile_id', 'question_id')
 
 
 class Question(models.Model):
@@ -61,6 +62,7 @@ class Question(models.Model):
     tags = models.ManyToManyField(Tag)
     amount_of_answers = models.IntegerField(default=0)
     question_likes = models.ManyToOneRel(field = "question_likes", field_name = "question_likes", to = "question_id")
+    answers = models.ManyToOneRel(field = "answers", field_name = "answers", to = "question_id")
 
     objects = QuestionManager()
 
@@ -76,6 +78,7 @@ class AnswerLike(models.Model):
 
     class Meta:
         ordering = ['-id']
+        unique_together = ('profile_id', 'answer_id')
 
 class Answer(models.Model):
     question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -84,6 +87,7 @@ class Answer(models.Model):
     date_of_creation = models.DateTimeField(auto_now_add=True)
     is_correct = models.BooleanField(default=False)
     answer_likes = models.ManyToOneRel(field = "answer_likes", field_name = "answer_likes", to = "answer_id")
+    question_id = models.ForeignKey('Question', related_name='answers', on_delete = models.CASCADE)
 
     class Meta:
         ordering = ['-id']

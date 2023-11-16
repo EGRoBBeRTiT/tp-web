@@ -7,8 +7,15 @@
                 <img src="{{ MEDIA_URL }}{{ answer.profile_id.avatar }}" alt="" />
             </div>
             <div class="like">
+                {% load items_length %}
+                <div>
+                    {{ answer.answer_likes.all|items_length:True }}
+                </div>
                 <a class="link-like" href="#"><img class = "arrows" src="{% static 'img/down.jpg' %}"></a>
-                <div class="counter">{{ answer.likes.amount_of_likes }}</div>
+
+                <div>
+                    {{ answer.answer_likes.all|items_length:False }}
+                </div>
                 <a class="link-like" href="#"><img class = "arrows" src="{% static 'img/up.jpg' %}"></a>
             </div>
         </div>
