@@ -2,6 +2,11 @@ from django.shortcuts import render
 from . import models
 from django.http import Http404
 from django.core.paginator import Paginator
+from django.contrib.auth import login as dj_login, authenticate
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views.decorators.csrf import csrf_protect
+
 
 
 def paginate(objects_list, request, per_page=10):
@@ -42,10 +47,20 @@ def question(request, question_id: int):
     context = {'question': question_item[0], 'answers': page, 'number_of_pages': number_of_pages, 'is_authorized': True}
     return render(request, 'question.html', context=context)
 
-
+@csrf_protect
 def login(request):
-    context = {'is_authorized': False, 'error': 'Sorry, wrong password!'}
-    return render(request, 'login.html', context=context)
+    if (request.method == 'POST'):
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            dj_login(request, user)
+
+            return redirect(reverse('index'))
+
+        return render(request, 'login.html', {'error': 'Login or/and password are incorrect. Try again.'})
+
+    return render(request, 'login.html')
 
 
 def signup(request):
