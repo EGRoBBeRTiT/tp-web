@@ -70,7 +70,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'askme',
         'USER': 'postgres',
-        'PASSWORD': 'password',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -126,4 +126,5 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'app.Profile'
+
 
