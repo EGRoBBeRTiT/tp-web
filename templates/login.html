@@ -10,17 +10,24 @@
     {% include 'inc/error.html' %}
 
     <div class="login">
-        <div class="mb-3">
-            <label for="login_input" class="form-label">Login</label>
-            <input type="text" class="form-control" id="login_input" maxlength="25"  placeholder="Enter you login here">
-        </div>
-        <div class="mb-3">
-            <label for="password_input" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password_input" maxlength="30" placeholder="password">
-        </div>
-        <div id="log_in">
-            <button type="button" class="btn btn-outline-dark">Log in!</button>
-        </div>
+        {% if error %}
+            <div class="errornote centered alert alert-danger mb-3">
+                {{ error }}
+            </div>
+        {% endif %}
+        <form method='POST'>{% csrf_token %}
+            <div class="mb-3">
+                <label for="login_input" class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" id="login_input" maxlength="25"  placeholder="Enter you username here">
+            </div>
+            <div class="mb-3">
+                <label for="password_input" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password_input" maxlength="30" placeholder="password">
+            </div>
+            <div id="log_in">
+                <button type="submit" class="btn btn-outline-dark">Log in!</button>
+            </div>
+        </form >
         <a href="{% url 'signup' %}">create new account</a>
     </div>
 {% endblock %}
