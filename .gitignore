@@ -2,3 +2,12 @@ env
 my.cnf
 build
 askme.egg-info
+
+**/__pycache__/
+__pycache__/
+**/*.pyc
+**/.pyc
+*.pyc
+.pyc
+
+

@@ -10,16 +10,12 @@
     <h1>Settings: {{ user.nickname }}</h1>
     <div class="settings">
         <div class="mb-3">
-            <label for="login_input" class="form-label">Login</label>
-            <input type="text" class="form-control" id="login_input" maxlength="20" value="{{ user.username }}">
+            <label for="login_input" class="form-label">Username</label>
+            <input type="text" class="form-control" id="login_input" maxlength="20" value="{{ user.nickname }}">
         </div>
         <div class="mb-3">
             <label for="email_input" class="form-label">Email</label>
             <input type="text" class="form-control" id="email_input" value="{{ user.email }}">
-        </div>
-        <div class="mb-3">
-            <label for="nickname_input" class="form-label">NickName</label>
-            <input type="text" class="form-control" id="nickname_input" maxlength="20" value="{{ user.nickname }}">
         </div>
         <div class="mb-3">
             <label for="upload_avatar" class="form-label">Upload avatar</label>

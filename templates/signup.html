@@ -9,32 +9,28 @@
 
     {% include 'inc/error.html' %}
 
-    <div class="signup">
+    <form class="signup" method="POST">{% csrf_token %}
         <div class="mb-3">
-            <label for="login_input" class="form-label">Login</label>
-            <input type="text" class="form-control" id="login_input" maxlength="20" placeholder="Enter you login here">
+            <label for="login_input" class="form-label">Username</label>
+            <input type="text" name="nickname" class="form-control" id="login_input" maxlength="20" placeholder="Enter you login here">
         </div>
         <div class="mb-3">
             <label for="email_input" class="form-label">Email</label>
-            <input type="text" class="form-control" id="email_input" placeholder="Enter you email here">
-        </div>
-        <div class="mb-3">
-            <label for="nickname_input" class="form-label">NickName</label>
-            <input type="text" class="form-control" id="nickname_input" maxlength="20" placeholder="Enter you nickname here">
+            <input type="email" name="email" class="form-control" id="email_input" placeholder="Enter you email here">
         </div>
         <div class="mb-3">
             <label for="password_input" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password_input" maxlength="25" placeholder="password">
+            <input type="password" name="password" class="form-control" id="password_input" maxlength="25" placeholder="password">
         </div>
         <div class="mb-3">
             <label for="password_repeat_input" class="form-label">Repeat password</label>
-            <input type="password" class="form-control" id="password_repeat_input" maxlength="25" placeholder="password">
+            <input type='password' name="passwordRepeat" class="form-control" id="password_repeat_input" maxlength="25" placeholder="password">
         </div>
         <div class="mb-3">
             <label for="upload_avatar" class="form-label">Upload avatar</label>
-            <input class="form-control" type="file" id="upload_avatar">
+            <input class="form-control" name="avatar" type="file" id="upload_avatar">
         </div>
-        <button type="button" class="btn btn-outline-dark">Register!</button>
-    </div>
+        <button type='submit' class="btn btn-outline-dark">Register!</button>
+    </form>
 {% endblock %}
 

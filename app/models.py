@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.contrib.auth.hashers import PBKDF2PasswordHasher
 
 
 class ProfileManager(BaseUserManager):
@@ -46,6 +47,14 @@ class Profile(AbstractBaseUser, PermissionsMixin):
 class TagManager(models.Manager):
     def get_popular_tags(self):
         return self.filter(id__lt=9)
+    
+    def get_tag_by_name(self, tag):
+        tags = self.filter(tag=tag)
+
+        if len(tags):
+            return tags[0]
+        
+        return tags
 
 
 class Tag(models.Model):
@@ -66,6 +75,14 @@ class QuestionManager(models.Manager):
 
     def get_questions_by_tag(self, tag):
         return self.filter(tags__tag=tag)
+    
+    def get_question_by_id(self, id):
+        questions = self.filter(id=id)
+
+        if len(questions):
+            return questions[0]
+        
+        return questions
     
 class QuestionLike(models.Model):
     date_of_creation = models.DateTimeField(auto_now_add=True)

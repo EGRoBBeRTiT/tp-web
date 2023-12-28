@@ -35,16 +35,18 @@
                 <div class="user-block">
                     {% if is_authorized %}
                     <div class="row">
-                        <div class="col-4">
-                            <div class="user-block-avatar">
-                                <img src="{{ MEDIA_URL }}1.jpg" alt=""/>
+                        {% if user.avatar %}
+                            <div class="col-4">
+                                <div class="user-block-avatar">
+                                    <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt=""/>
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
                         <div class="col-8">
                             <div class="user-block-information">
-                                User name
+                                {{ user.nickname }}
                                 <div class="user-block-actions">
-                                    <a href="#">log out</a>
+                                    <a href="logout">log out</a>
                                     <a href="{% url 'settings' %}">settings</a>
                                 </div>
                             </div>

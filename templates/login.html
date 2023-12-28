@@ -10,11 +10,6 @@
     {% include 'inc/error.html' %}
 
     <div class="login">
-        {% if error %}
-            <div class="errornote centered alert alert-danger mb-3">
-                {{ error }}
-            </div>
-        {% endif %}
         <form method='POST'>{% csrf_token %}
             <div class="mb-3">
                 <label for="login_input" class="form-label">Username</label>
