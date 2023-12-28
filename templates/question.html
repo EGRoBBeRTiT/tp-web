@@ -21,11 +21,12 @@
 
     <hr/>
 
-    <div class="mb-3">
+    {% include 'inc/error.html' %}
+    <form class="mb-3" method="POST">{% csrf_token %}
         <label for="answer_input" class="form-label">Add your answer</label>
-        <textarea class="form-control" id="answer_input" rows="3" placeholder="Enter your answer here" maxlength="512">
+        <textarea class="form-control" name="text" id="answer_input" rows="3" placeholder="Enter your answer here" maxlength="512">
         </textarea>
-    </div>
-    <button type="button" class="btn btn-secondary">Answer</button>
+        <button type="submit" class="btn btn-secondary">Answer</button>
+    </form>
 {% endblock %}
 
